@@ -5,7 +5,7 @@ const pessoaServices = new PessoaServices();
 
 class PessoaController extends Controller {
   constructor() {
-    super(pessoaServices)
+    super(pessoaServices);
   }
 }
 
