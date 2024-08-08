@@ -12,7 +12,7 @@ class Controller {
       const novoRegistro = await this.entidadeService.criarRegistro(dadosParaCriacao);
       return res.status(201).json({mensagem: "Registro criado com sucesso"});
     } catch (erro) {
-      //erro
+      return res.status(500).json({erro: erro.message});
     }
   }
   
@@ -21,7 +21,7 @@ class Controller {
       const listaDeRegistros = await this.entidadeService.pegaTodosOsRegistros();
       return res.status(200).json(listaDeRegistros);
     } catch (erro) {
-      //erro
+      return res.status(500).json({erro: erro.message});
     }
   }
 
@@ -35,7 +35,7 @@ class Controller {
           res.status(404).json({mensagem: "Registro não encontrado com esse ID"});
         }
     } catch (erro) {
-      // erro
+      return res.status(500).json({erro: erro.message});
     }
   }
 
@@ -50,7 +50,7 @@ class Controller {
         res.status(200).json({mensagem: "Registro atualizado com sucesso"});
       }
     } catch (erro) {
-      //erro
+      return res.status(500).json({erro: erro.message});
     }
   }
 
@@ -65,7 +65,7 @@ class Controller {
       }
       
     }  catch (erro) {
-      //erro
+      return res.status(500).json({erro: erro.message});
     }
   }
 }

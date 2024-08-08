@@ -20,7 +20,7 @@ class PessoaController extends Controller {
       }
       
     } catch (erro) {
-      //erro
+      return res.status(500).json({erro: erro.message});
     }
   }
 }
