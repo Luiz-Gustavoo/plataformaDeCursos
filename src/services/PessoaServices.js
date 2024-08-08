@@ -8,8 +8,13 @@ class PessoaServices extends Services {
   }
   async pegaMatriculasPorEstudante(id) {
     const estudante = await super.pegaRegistroPorID(id);
-    const listaMatriculas = await estudante.getAulasMatriculadas();
-    return listaMatriculas;
+    if(estudante !== null) {
+      const listaMatriculas = await estudante.getAulasMatriculadas();
+      return listaMatriculas;
+    } else {
+      return false;
+    }
+    
   }
     
 }
