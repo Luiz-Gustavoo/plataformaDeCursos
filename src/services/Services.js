@@ -14,6 +14,16 @@ class Services {
     return dataSource[this.model].findAll();
   }
 
+  async pegaRegistrosPorEscopo(escopo) {
+    return dataSource[this.model].scope(escopo).findAll();
+  }
+
+  async pegaRegistrosPorFiltro(coluna, valor) {
+    return dataSource[this.model].findAll({
+      where: {[coluna]: valor}
+    });
+  }
+
   async pegaRegistroPorID(id) {
     return dataSource[this.model].findByPk(id);
   }
