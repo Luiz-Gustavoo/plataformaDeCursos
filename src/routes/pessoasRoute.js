@@ -9,6 +9,7 @@ const matriculaController = new MatriculaController();
 
 router.post("/pessoas", (req, res) => pessoaController.criar(req, res));
 router.get("/pessoas", (req, res) => pessoaController.pegaTodos(req, res));
+router.get('/pessoas/todos', (req, res) => pessoaController.pegaTodasAsPessoas(req, res));
 router.get("/pessoas/:id", (req, res) => pessoaController.pegaPorID(req, res));
 router.put("/pessoas/:id", (req, res) => pessoaController.atualizar(req, res));
 router.delete("/pessoas/:id", (req, res) => pessoaController.deletar(req, res));
