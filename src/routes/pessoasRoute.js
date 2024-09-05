@@ -14,7 +14,7 @@ router.get("/pessoas/:id", (req, res) => pessoaController.pegaPorID(req, res));
 router.put("/pessoas/:id", (req, res) => pessoaController.atualizar(req, res));
 router.delete("/pessoas/:id", (req, res) => pessoaController.deletar(req, res));
 router.get("/pessoas/:docenteId/cursos", (req, res) => pessoaController.pegaCursos(req, res));
-router.get("/pessoas/:estudanteId/matriculas", (req, res) => pessoaController.pegaMatriculas(req, res));
+router.get("/pessoas/:estudanteId/matriculas", (req, res) => pessoaController.pegaMatriculasAtivas(req, res));
 router.post("/pessoas/:estudanteId/matriculas", (req, res) => matriculaController.criar(req, res));
 
 
