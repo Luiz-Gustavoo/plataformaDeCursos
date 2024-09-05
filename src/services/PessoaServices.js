@@ -8,13 +8,26 @@ class PessoaServices extends Services {
   async pegaMatriculasAtivasPorEstudante(id) {
     const estudante = await super.pegaRegistroPorID(id);
     if(estudante !== null) {
-      const listaMatriculas = await estudante.getAulasMatriculadas();
+      const listaMatriculas = await estudante.getMatriculasAtivas();
 
       if (listaMatriculas.length !== 0) {
         return listaMatriculas;
       }           
     } else {
       return false;
+    }
+  }
+
+  async pegaTodasMatriculasPorEstudante(id) {
+    const estudante = await super.pegaRegistroPorID(id);
+    if (estudante !== null) {
+      const listaMatriculas = await estudante.getTodasAsMatriculas();
+
+      if (listaMatriculas.length !== 0) {
+        return listaMatriculas;
+      } else {
+        return false;
+      }
     }
   }
 
