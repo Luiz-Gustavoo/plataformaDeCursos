@@ -5,7 +5,7 @@ class PessoaServices extends Services {
   constructor() {
     super('Pessoa');
   }
-  async pegaMatriculasPorEstudante(id) {
+  async pegaMatriculasAtivasPorEstudante(id) {
     const estudante = await super.pegaRegistroPorID(id);
     if(estudante !== null) {
       const listaMatriculas = await estudante.getAulasMatriculadas();
