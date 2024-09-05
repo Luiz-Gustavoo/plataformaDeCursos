@@ -8,10 +8,10 @@ class PessoaController extends Controller {
     super(pessoaServices);
   }
 
-  async pegaMatriculas(req, res) {
+  async pegaMatriculasAtivas(req, res) {
     const {estudanteId} = req.params;
     try {
-      const listaMatriculas = await pessoaServices.pegaMatriculasPorEstudante(Number(estudanteId));
+      const listaMatriculas = await pessoaServices.pegaMatriculasAtivasPorEstudante(Number(estudanteId));
     
       if(!listaMatriculas) {
         return res.status(404).json({mensagem: "Não foi possível encontrar matrículas para esse aluno"});
