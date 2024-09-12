@@ -9,9 +9,9 @@ class PessoaController extends Controller {
   }
 
   async pegaMatriculasAtivas(req, res) {
-    const {estudanteId} = req.params;
+    const {estudante_id} = req.params;
     try {
-      const listaMatriculas = await pessoaServices.pegaMatriculasAtivasPorEstudante(Number(estudanteId));
+      const listaMatriculas = await pessoaServices.pegaMatriculasAtivasPorEstudante(Number(estudante_id));
     
       if(!listaMatriculas) {
         return res.status(404).json({mensagem: "Não foi possível encontrar matrículas para esse aluno"});
@@ -24,9 +24,9 @@ class PessoaController extends Controller {
   }
 
   async pegaTodasAsMatriculas(req, res) {
-    const {estudanteId} = req.params;
+    const {estudante_id} = req.params;
     try {
-      const listaMatriculas = await pessoaServices.pegaTodasMatriculasPorEstudante(Number(estudanteId));
+      const listaMatriculas = await pessoaServices.pegaTodasMatriculasPorEstudante(Number(estudante_id));
 
       if(!listaMatriculas) {
         return res.status(404).json({mensagem: "Não foi possível encontrar matrículas para esse aluno"});
@@ -40,9 +40,9 @@ class PessoaController extends Controller {
   }
 
   async pegaCursos(req, res) {
-    const {docenteId} = req.params;
+    const {docente_id} = req.params;
     try {
-      const listaCursos = await pessoaServices.pegaCursosPorDocente(Number(docenteId));
+      const listaCursos = await pessoaServices.pegaCursosPorDocente(Number(docente_id));
       if (!listaCursos) {
         return res.status(404).json({mensagem: "Não foi possível encontar cursos criados por esse docente"});
       } else {
