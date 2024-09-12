@@ -32,15 +32,9 @@ class Services {
     return dataSource[this.model].findOne({where: {...where}});
   }
 
-  async atualizarRegistro(dadosAtualizados, id) {
+  async atualizarRegistro(dadosAtualizados, where) {
 
-    const registroExistente = await dataSource[this.model].findByPk(id);
-    if (registroExistente == null) {
-      return false;
-    }
-    const listaDeRegistrosAtualizados = dataSource[this.model].update(dadosAtualizados, {
-      where: {id: id}
-    });
+    const listaDeRegistrosAtualizados = dataSource[this.model].update(dadosAtualizados, {where: {...where}});
     if (listaDeRegistrosAtualizados[0] === 0) {
       return false;
     } 
@@ -48,10 +42,8 @@ class Services {
   }
   
   async deletarRegistro(id) {
-    const options = {
-      where: { id }
-    };
-    const registroDeletado = await dataSource[this.model].destroy(options); 
+    
+    const registroDeletado = await dataSource[this.model].destroy({where: {id: id}}); 
     return registroDeletado;
   }
   
