@@ -4,6 +4,7 @@ const CursoController = require('../controllers/CursoController.js');
 const router = Router();
 const cursoController = new CursoController();
 
+router.get("/cursos", (req, res) => cursoController.pegaCursos(req, res));
 router.post("/cursos", (req, res) => cursoController.criar(req, res));
 router.get("/cursos", (req, res) => cursoController.pegaTodos(req, res));
 router.get("/cursos/:id", (req, res) => cursoController.pegaPorID(req, res));
