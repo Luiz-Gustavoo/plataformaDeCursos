@@ -32,6 +32,12 @@ class Services {
     return dataSource[this.model].findOne({where: {...where}});
   }
 
+  async pegaEContaRegistros(where) {
+    return dataSource[this.model].findAndCountAll({
+      where: {...where},
+      order: [['id', 'DESC']]});
+  }
+
   async atualizarRegistro(dadosAtualizados, where) {
 
     const listaDeRegistrosAtualizados = dataSource[this.model].update(dadosAtualizados, {where: {...where}});
