@@ -20,6 +20,8 @@ router.post("/pessoas", (req, res) => pessoaController.criar(req, res));
 router.get("/pessoas", (req, res) => pessoaController.pegaTodos(req, res));
 
 router.get("/pessoas/:docente_id/cursos", (req, res) => pessoaController.pegaCursos(req, res));
+router.get("/pessoas/cursos/cursosAgrupadosPorDocente", (req, res) => cursoController.pegaCursosAgrupadosPorDocente(req, res));
+
 router.get("/pessoas/:docente_id/cursos/:id", (req, res) => cursoController.pegaUm(req, res));
 
 router.get("/pessoas/:estudante_id/matriculas/:id", (req, res) => matriculaController.pegaUm(req, res));
