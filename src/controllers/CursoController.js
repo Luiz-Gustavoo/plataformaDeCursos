@@ -27,6 +27,19 @@ class CategoriaController extends Controller {
             res.status(500).json({message: erro.message});
         }
     }
+
+    async pegaCursosAgrupadosPorDocente(req, res) {
+
+        const listaCursos = await cursoServices.pegaEContaRegistros({
+            where: {
+                
+            },
+            attributes: ['docente_id'],
+            group: ['docente_id'],
+            order: [['id', 'ASC']]
+        });
+        return res.status(200).json(listaCursos);
+    }
 }
 
 
