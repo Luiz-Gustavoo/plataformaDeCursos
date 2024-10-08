@@ -14,8 +14,8 @@ class Services {
     return dataSource[this.model].findAll({where: {...where}});
   }
 
-  async pegaRegistrosPorEscopo(escopo) {
-    return dataSource[this.model].scope(escopo).findAll();
+  async pegaRegistrosPorEscopo(escopo, options) {
+    return dataSource[this.model].scope(escopo).findAll({...options});
   }
 
   async pegaRegistrosPorFiltro(coluna, valor) {
