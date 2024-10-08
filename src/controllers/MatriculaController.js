@@ -36,10 +36,12 @@ class MatriculaController extends Controller {
             status: 'matriculado' 
           },
           order: [['curso_id', 'DESC']],
-          group: ['curso_id']
+          attributes: ['curso_id'],
+          group: ['curso_id'],
+          having: Sequelize.literal(`count(curso_id) >= ${lotacaoCurso}`)
           
         });
-        return res.status(200).json(cursosLotados);
+        return res.status(200).json(cursosLotados.count);
       } catch (erro) {
         return res.status(500).json({erro: erro.message});
       }
