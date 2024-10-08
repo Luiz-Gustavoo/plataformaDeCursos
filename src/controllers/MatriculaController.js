@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const Controller = require('./Controller.js');
 const MatriculaServices = require('../services/MatriculaServices.js');
 
@@ -11,15 +12,38 @@ class MatriculaController extends Controller {
     async pegaMatriculasPorEstudante(req, res) {
         const { estudante_id } = req.params;
         try {
-          const listaMatriculasPorEstudante = await matriculaServices.pegaEContaRegistros({
-            estudante_id: Number(estudante_id),
-            status: 'matriculado'
+          const listaMatriculasPorEstudante = await matriculaServices.pegaEContaRegistros(
+            {
+            where: {
+              estudante_id: Number(estudante_id),
+              status: 'matriculado'
+            },
+            order: [['id', 'ASC']]
+            
           });
           return res.status(200).json(listaMatriculasPorEstudante);
         } catch (erro) {
           return res.status(500).json({erro: erro.message});
         }   
       }
+
+    async pegaCursosLotados(req, res) {
+      const lotacaoCurso = 2;
+      try {
+        const cursosLotados = await matriculaServices.pegaEContaRegistros(
+          {
+          where: {
+            status: 'matriculado' 
+          },
+          order: [['curso_id', 'DESC']],
+          group: ['curso_id']
+          
+        });
+        return res.status(200).json(cursosLotados);
+      } catch (erro) {
+        return res.status(500).json({erro: erro.message});
+      }
+    }
 }
 
 module.exports = MatriculaController;
