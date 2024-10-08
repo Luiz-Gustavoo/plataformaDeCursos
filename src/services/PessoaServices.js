@@ -31,8 +31,8 @@ class PessoaServices extends Services {
     }
   }
 
-  async pegaTodasPessoasEscopo() {
-    const listaPessoas = await super.pegaRegistrosPorEscopo('todosOsRegistros');
+  async pegaTodasPessoasEscopo(options) {
+    const listaPessoas = await super.pegaRegistrosPorEscopo('todosOsRegistros', options);
     return listaPessoas;
   }
 
