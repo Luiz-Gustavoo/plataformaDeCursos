@@ -55,7 +55,9 @@ class PessoaController extends Controller {
 
   async pegaTodasAsPessoas(req, res) {
     try {
-      const listaTodasPessoas = await pessoaServices.pegaRegistrosPorEscopo();
+      const listaTodasPessoas = await pessoaServices.pegaTodasPessoasEscopo({
+        order: [['id', 'DESC']]
+      });
       res.status(200).json(listaTodasPessoas);
     } catch (erro) {
       return res.status(500).json({erro: erro.message});
