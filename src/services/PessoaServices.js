@@ -4,6 +4,7 @@ class PessoaServices extends Services {
   // o modelo passado para o construtor é usado nas operações CRUD na classe Services
   constructor() {
     super('Pessoa');
+    this.matriculaService = new Services('Matricula');
   }
   async pegaMatriculasAtivasPorEstudante(id) {
     const estudante = await super.pegaRegistroPorID(id);
@@ -47,6 +48,11 @@ class PessoaServices extends Services {
     } else {
       return false;
     }
+  }
+
+  async cancelaPessoaEMatriculas(estudante_id) {
+    await super.atualizarRegistro({ativo: false}, {id: estudante_id});
+    await this.matriculaService.atualizarRegistro({status: 'cancelado'}, {estudante_id: estudante_id});
   }
 }
 
