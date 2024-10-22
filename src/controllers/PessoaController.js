@@ -58,7 +58,17 @@ class PessoaController extends Controller {
       const listaTodasPessoas = await pessoaServices.pegaTodasPessoasEscopo({
         order: [['id', 'DESC']]
       });
-      res.status(200).json(listaTodasPessoas);
+      return res.status(200).json(listaTodasPessoas);
+    } catch (erro) {
+      return res.status(500).json({erro: erro.message});
+    }
+  }
+
+  async cancelaRegistroEstudante(req, res) {
+    const {estudante_id} = req.params;
+    try {
+      await pessoaServices.cancelaPessoaEMatriculas(Number(estudante_id));
+      return res.status(200).json({mensagem: `Matrículas ref. estudante ${estudante_id} cancelada`});
     } catch (erro) {
       return res.status(500).json({erro: erro.message});
     }
